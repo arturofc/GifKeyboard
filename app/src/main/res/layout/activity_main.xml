@@ -10,6 +10,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.arturo.gifkeyboard.MainActivity">
 
+    <ImageView
+        android:id = "@+id/gifImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
