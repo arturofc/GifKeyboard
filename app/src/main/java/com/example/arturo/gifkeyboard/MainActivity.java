@@ -1,20 +1,13 @@
 package com.example.arturo.gifkeyboard;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
-
-import com.google.api.client.http.HttpRequest;
-import com.google.api.client.http.HttpResponse;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,11 +19,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         display = (EditText)findViewById(R.id.testDisplay);
-        try {
-            getGiphy();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String gif_url = "http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=cute+funny+cat+kitten";
+        //new RetrieveGifs().execute(gif_url);
 
     }
 
@@ -45,34 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void getGiphy() throws IOException{
-        String giphyurl = "http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=cute+funny+cat+kitten";
-
-        if (isNetworkAvailable()) {
-
-
-            HttpResponse response  = request.execute();
-            display.setText(jsonData);
-        }else{
-            System.out.println("Network Error");
-        }
-
-
-    }
-
-
-    // Check all connectivities whether available or not
-    public boolean isNetworkAvailable() {
-        ConnectivityManager cm = (ConnectivityManager)
-                getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
-        // if no network is available networkInfo will be null
-        // otherwise check if we are connected
-        if (networkInfo != null && networkInfo.isConnected()) {
-            return true;
-        }
-        return false;
-    }
 
 
 
