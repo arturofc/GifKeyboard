@@ -10,13 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.arturo.gifkeyboard.MainActivity">
 
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="56dp"
-        android:backgroundTint="#3c0606"></GridLayout>
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,10 +28,13 @@
         android:layout_alignParentStart="true"
         android:layout_toStartOf="@+id/Search" />
 
-    <ImageView
-        android:id = "@+id/gifImage"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:paddingTop="50dp"/>
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/l1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="42dp" />
+
 
 </RelativeLayout>
