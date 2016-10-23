@@ -25,7 +25,6 @@ import okhttp3.Response;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
-    //test push
     Button Search;
     EditText display;
     ListView listView;
@@ -62,20 +61,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private GiphyGifData getGif(String jsonData) throws JSONException {
-        System.out.println("HELLO");
         GiphyGifData Gif = new GiphyGifData();
 
         JSONObject giphy = new JSONObject(jsonData);
         JSONArray data = giphy.getJSONArray("data");
         String[] urls = new String[data.length()];
-        System.out.println(jsonData);
-        System.out.println("data length: " + data.length());
 
         for(int i = 0; i < data.length(); i++){
             JSONObject image = (JSONObject)data.get(i);
             JSONObject type = image.getJSONObject("images").getJSONObject("downsized");
             urls[i] = type.getString("url");
-            System.out.println("IMAGE URL: " + urls[i]);
         }
         Gif.setUrl(urls);
         return Gif;
@@ -90,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
                 "q=" + searchText +
                 "&api_key=" +
                 apiKey;
-
 
         Request request = new Request.Builder()
                 .url(url)
@@ -129,7 +123,6 @@ public class MainActivity extends AppCompatActivity {
     public void displayGifs(){
 
         listView.setAdapter(new ImageListAdapter(MainActivity.this, giphyGifData.getUrl()));
-
 
     }
 
