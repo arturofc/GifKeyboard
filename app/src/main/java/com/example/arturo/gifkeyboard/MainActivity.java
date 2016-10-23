@@ -1,5 +1,7 @@
 package com.example.arturo.gifkeyboard;
 
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +15,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
+import com.bumptech.glide.util.LruCache;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,6 +28,8 @@ import okhttp3.Response;
 import okhttp3.Headers;
 
 import java.io.IOException;
+import java.net.URI;
+import java.util.Iterator;
 
 public class MainActivity extends AppCompatActivity {
     Button Search;
@@ -57,12 +62,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private GiphyGifData getGif(String jsonData) throws JSONException {
-        JSONObject giphy = new JSONObject(jsonData);
-        JSONObject data = giphy.getJSONObject("data");
-
         GiphyGifData Gif = new GiphyGifData();
-        Gif.setUrl(data.getString("image_url"));
-
+        String[] urls = new String[100];
+        JSONObject giphy = new JSONObject(jsonData.trim());
+        JSONObject data = giphy.getJSONObject("data");
+        int i;
+        for(i = 0; i < data.names().length(); i++) {
+            urls[i] = data.getString("image_url");
+        }
+        Gif.setUrl(urls);
         return Gif;
     }
 
@@ -118,8 +126,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void displayGifs(){
 
+
+        String urls[] = giphyGifData.getUrl();
+        int i = 0;
         Glide.with(MainActivity.this)
-                .load(giphyGifData.getUrl())
+                .load(urls[i])
                 .thumbnail(0.1f)
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .centerCrop()

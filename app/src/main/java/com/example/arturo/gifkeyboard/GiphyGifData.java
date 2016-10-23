@@ -6,13 +6,13 @@ package com.example.arturo.gifkeyboard;
 
 public class GiphyGifData {
 
-    private String url;
+    private String[] urls;
 
-    public String getUrl() {
-        return url;
+    public String[] getUrl() {
+        return urls;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setUrl(String[] urls) {
+        this.urls = urls;
     }
 }
