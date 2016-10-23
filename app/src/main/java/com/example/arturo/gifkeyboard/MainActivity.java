@@ -3,9 +3,6 @@ package com.example.arturo.gifkeyboard;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.media.Image;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,12 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -59,16 +50,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-//        gifView.setOnClickListener(new View.OnClickListener(){
-//            public void onClick(View v)
-//            {
-//                String[] urlsData = giphyGifData.getUrl();
-//                System.out.println("WORKING");
-//                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-//                ClipData clip = ClipData.newPlainText("The link to selected gif", urlsData[0]);
-//                clipboard.setPrimaryClip(clip);
-//            }
-//        });
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -160,7 +141,6 @@ public class MainActivity extends AppCompatActivity {
         clipboard.setPrimaryClip(clip);
 
         Toast.makeText(getApplicationContext(),"URL copied to clipboard",Toast.LENGTH_LONG).show();
-
 
     }
 }
