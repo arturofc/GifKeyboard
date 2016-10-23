@@ -1,5 +1,8 @@
 package com.example.arturo.gifkeyboard;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -55,6 +58,16 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"ERROR WHILE RETRIEVING GIFS",Toast.LENGTH_LONG).show();
                     System.out.println("Error while retrieving the gifs. Exception message: " + e.getMessage());
                 }
+            }
+        });
+        gifView.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v)
+            {
+                String[] urlsData = giphyGifData.getUrl();
+                System.out.println("WORKING");
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("The link to selected gif", urlsData[0]);
+                clipboard.setPrimaryClip(clip);
             }
         });
         Toast.makeText(getApplicationContext(),"IT WORKS", Toast.LENGTH_LONG).show();
